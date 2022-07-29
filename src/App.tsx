@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import { FirstChildModel, ParentModel, SecondChildModel } from './models';
+import { ModelProvider } from './hooks';
+import { Parent, FirstChild, SecondChild } from './components';
+
+const parent = new ParentModel();
+const first = new FirstChildModel();
+const second = new SecondChildModel();
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ModelProvider value={parent}>
+        <Parent />
+      </ModelProvider>
+
+      <ModelProvider value={first}>
+        <FirstChild />
+      </ModelProvider>
+
+      <ModelProvider value={second}>
+        <SecondChild />
+      </ModelProvider>
     </div>
   );
 }
